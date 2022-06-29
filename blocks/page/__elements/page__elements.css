@@ -1,0 +1,9 @@
+.page__elements{
+  padding-top: 50px;
+}
+
+@media screen and (max-width:750px) {
+  .page__elements{
+    padding-top: 36px;
+  }
+}

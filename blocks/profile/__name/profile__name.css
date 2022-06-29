@@ -1,5 +1,6 @@
 .profile__name{
   margin: 0 0 16px 0;
+  padding: 0;
   width: 294px;
   font-weight: 500;
   color: #fff;
@@ -11,6 +12,7 @@
   .profile__name{
     width: 189px;
     margin-bottom: 14px;
+    margin-left: 20px;
     font-size: 27px;
     line-height: 33px;
   }
