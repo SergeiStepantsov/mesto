@@ -30,6 +30,7 @@
           <h3 class="element__title">Карачаевск</h3>
           <button type="button" class="element__like-button"></button>
         </div>
+        <button class="element__remove-button"></button>
       </div>
       <div class="element">
         <img src="./images/kirill-pershin-1404681-unsplash.png" class="element__image" alt="Вид на гору Эльбрус. Фото">
@@ -70,7 +71,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="popupForm" novalidate>
@@ -81,6 +82,27 @@
         <button type="button" class="popup__close-button"></button>
       </div>
     </div>
+    <div class="popup popup_add-element">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="popupForm" novalidate>
+          <input name="placeName" type="text" class="popup__input popup__input_place_name" placeholder="Название" minlength="2" maxlength="40" required>
+          <input name="placeLink" type="text" class="popup__input popup__input_place_url" placeholder="Ссылка на картинку" required>
+          <button type="submit" class="popup__button">Создать</button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
+    <div class="popup popup_zoom-image">
+      <div class="popup__figure-container">
+        <figure class="popup__figure">
+          <img src="./images/kirill-pershin-1088404-unsplash.png" class="popup__image" alt="#">
+          <figcaption class="popup__image-caption">Карачаево-Черкессия. Фото</figcaption>
+        </figure>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
+    
   </main> 
   <script src="./scripts/index.js"></script>
 </body>
