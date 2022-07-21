@@ -24,30 +24,26 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
-const profileEditButton = document.querySelector('.profile__edit-button'); // определяем переменную для edit кнопки
-const addElementButton = document.querySelector('.profile__add-button');
-const closePopupButton = document.querySelectorAll('.popup__close-button'); // определям переменную для кнопки close
-const popup = document.querySelectorAll('.popup');
-
-const popupEditProfile = document.querySelector('.popup_edit-profile'); //опредляем перменную editProfile
-
-const popupElementAdd = document.querySelector('.popup_add-element'); //опредляем перменную elementAdd
-
-const popupZoomImage = document.querySelector('.popup_zoom-image');
-
+//блок переменных для кнопок
+const profileEditButton = document.querySelector('.profile__edit-button');
+const addElementButton = document.querySelector('.profile__add-button');  
+const closePopupButton = document.querySelectorAll('.popup__close-button'); 
+//блок переменных для всплывающих окон
+const popupEditProfile = document.querySelector('.popup_edit-profile');
+const popupElementAdd = document.querySelector('.popup_add-element'); 
+const popupZoomImage = document.querySelector('.popup_zoom-image'); 
+//блок переменных для формы редактирования профиля
+const formElement = popupEditProfile.querySelector('.popup__form');
+const inputName = formElement.querySelector('.popup__input_data_name'); 
+const inputAbout = formElement.querySelector('.popup__input_data_about'); 
+const profileName = document.querySelector('.profile__name'); 
+const profileAbout = document.querySelector('.profile__about'); 
+//редактирование формы добавления карточки
+const formPlaceAdd = popupElementAdd.querySelector('.popup__form');
+//начало контейнера для добавления карточек
 const elementsContainer = document.querySelector('.elements');
 
-const formElement = popupEditProfile.querySelector('.popup__form');
-const inputName = formElement.querySelector('.popup__input_data_name'); // определяем переменную для поля ввода имени
-const inputAbout = formElement.querySelector('.popup__input_data_about'); // определяем переменную для поля ввода о себе
-const profileName = document.querySelector('.profile__name'); // определяем переменную для Имени в блоке
-const profileAbout = document.querySelector('.profile__about'); // определяем переменную для Информации о себе в блоке
-
-const formPlaceAdd = popupElementAdd.querySelector('.popup__form');
-
-
-
+//открытие окон с формами
 const popupOpen = function (item){
   item.classList.toggle('popup_opened');
   if (item.classList.contains('popup_opened' && 'popup_edit-profile')){
@@ -96,6 +92,7 @@ function addElement(placeNameValue, placeUrlValue) {
   
   elementsContainer.prepend(cardElement);
 }
+// обработка формы с карточкой
 function placeFormSubmitHandler (evt) {
   evt.preventDefault(); 
   const placeName = formPlaceAdd.querySelector('.popup__input_place_name');
@@ -107,12 +104,11 @@ function placeFormSubmitHandler (evt) {
 }
 //инициализация карточек
 initialCards.forEach(function(element){
-  debugger
   const initialPlaceName = element.name;
   const initialPlaceUrl = element.link;
   addElement(initialPlaceName, initialPlaceUrl);
 });
-// отправка формы
+// обработка формы с профилем
 function formSubmitHandler (evt) {
   evt.preventDefault(); 
   profileName.textContent = inputName.value;
@@ -122,7 +118,7 @@ function formSubmitHandler (evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 formPlaceAdd.addEventListener('submit', placeFormSubmitHandler);
 
-// блок открытия-закрытия попапов -----------------
+// обработка кнопок
 profileEditButton.addEventListener('click', popupEditProfileOpen);
 addElementButton.addEventListener('click', popupElementAddOpen);
 
@@ -134,4 +130,3 @@ function popupClose(){
     item.classList.remove('popup_opened');
   });
 };
-//-----------конец блока открытия/закрытия попапов-----------
