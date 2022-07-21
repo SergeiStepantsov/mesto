@@ -32,6 +32,7 @@ const closePopupButton = document.querySelectorAll('.popup__close-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupElementAdd = document.querySelector('.popup_add-element'); 
 const popupZoomImage = document.querySelector('.popup_zoom-image'); 
+const popup = document.querySelectorAll('.popup');
 //блок переменных для формы редактирования профиля
 const formElement = popupEditProfile.querySelector('.popup__form');
 const inputName = formElement.querySelector('.popup__input_data_name'); 
