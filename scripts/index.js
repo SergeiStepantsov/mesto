@@ -26,9 +26,29 @@ const elementsContainer = document.querySelector('.elements');
 //открытие-закрытие окон с формами
 const openPopup = function (popup){
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByPressEsc);
+  popup.addEventListener('click', closePopupByClickOverlay);
 }
 const closePopup = function (popup){
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByPressEsc);
+  popup.removeEventListener('click', closePopupByClickOverlay);
+}
+//закрытие по нажатию клафиши esc
+const closePopupByPressEsc = function(evt){
+  if (evt.key === 'Escape'){
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  };
+}
+//функция закрытия по клику на оверлей
+function closePopupByClickOverlay (evt){
+  const openedOverlayPopup = document.querySelector('.popup_opened');
+  if (evt.target !== evt.currentTarget) {
+  return;
+ } else {
+  closePopup (openedOverlayPopup);
+ };
 }
 //функция открытия окна редактирования профиля
 function openPopupEditProfile () {
@@ -41,6 +61,8 @@ function openPopupEditProfile () {
 function closePopupEditProfile () {
   closePopup(popupEditProfile);
 }
+
+
 //функция открытия zoom контейнера
 function openPopupZoomImage(imgUrl, imgCap){
   popupZoomImage.querySelector('.popup__image').src = imgUrl;
