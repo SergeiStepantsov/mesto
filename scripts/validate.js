@@ -1,11 +1,8 @@
 const showError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  //debugger;
-  console.log(errorElement);
   inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(config.errorClass);
-  console.log(errorElement);
 };
 
 const hideError = (formElement, inputElement, config) => {

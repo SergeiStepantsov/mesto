@@ -31,6 +31,9 @@ const openPopup = function (popup){
 }
 const closePopup = function (popup){
   popup.classList.remove('popup_opened');
+  popup.querySelector('.popup__form').reset();
+  popup.querySelector('.popup__input-error').classList.remove('popup__input-error_visible');
+  popup.querySelector('.popup__input').classList.remove('popup__input_type_error');
   document.removeEventListener('keydown', closePopupByPressEsc);
   popup.removeEventListener('mousedown', closePopupByClickOverlay);
 }
