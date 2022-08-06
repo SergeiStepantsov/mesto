@@ -27,12 +27,12 @@ const elementsContainer = document.querySelector('.elements');
 const openPopup = function (popup){
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByPressEsc);
-  popup.addEventListener('click', closePopupByClickOverlay);
+  popup.addEventListener('mousedown', closePopupByClickOverlay);
 }
 const closePopup = function (popup){
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByPressEsc);
-  popup.removeEventListener('click', closePopupByClickOverlay);
+  popup.removeEventListener('mousedown', closePopupByClickOverlay);
 }
 //закрытие по нажатию клафиши esc
 const closePopupByPressEsc = function(evt){
@@ -77,6 +77,8 @@ function closePopupZoomImage () {
 //функция открытия окна добваления карточки
 function openPopupElementAdd () {
   openPopup(popupElementAdd);
+  formPlaceAdd.reset();
+
 }
 //функция закрытия окна добваления карточки
 function closePopupElementAdd () {
