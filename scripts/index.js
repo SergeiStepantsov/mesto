@@ -8,13 +8,13 @@ const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupElementAdd = document.querySelector('.popup_add-element'); 
 const popupZoomImage = document.querySelector('.popup_zoom-image'); 
 //блок переменных для кнопок закрытия, лайк, корзина
-const closeButtonEditProfile = popupEditProfile.querySelector('.popup__close-button'); 
-const closeButtonElementAdd = popupElementAdd.querySelector('.popup__close-button'); 
-const closeButtonZoomImage = popupZoomImage.querySelector('.popup__close-button'); 
+const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-button'); 
+const buttonCloseElementAdd = popupElementAdd.querySelector('.popup__close-button'); 
+const buttonCloseZoomImage = popupZoomImage.querySelector('.popup__close-button'); 
 //блок переменных для формы редактирования профиля
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
-const inputName = formEditProfile.querySelector('.popup__input_data_name'); 
-const inputAbout = formEditProfile.querySelector('.popup__input_data_about'); 
+const nameInput = formEditProfile.querySelector('.popup__input_data_name'); 
+const aboutInput = formEditProfile.querySelector('.popup__input_data_about'); 
 const profileName = document.querySelector('.profile__name'); 
 const profileAbout = document.querySelector('.profile__about'); 
 //редактирование формы добавления карточки
@@ -57,8 +57,8 @@ function closePopupByClickOverlay (evt){
 }
 //функция открытия окна редактирования профиля
 function openPopupEditProfile () {
-  inputName.value = profileName.textContent;
-  inputAbout.value = profileAbout.textContent;
+  nameInput.value = profileName.textContent;
+  aboutInput.value = profileAbout.textContent;
   popupEditProfile.querySelector('.userName-input-error').textContent = '';
   popupEditProfile.querySelector('.userAbout-input-error').textContent = '';
   const fieldInputPopup = Array.from(popupEditProfile.querySelectorAll('.popup__input'));
@@ -136,23 +136,23 @@ initialCards.forEach(function(element){
   addElement(initialPlaceName, initialPlaceUrl);
 });
 // обработка формы с карточкой
-function placeFormSubmitHandler (evt) {
+function handlerPlaceFormSubmit (evt) {
   addElement(placeName.value, placeUrl.value);
   formPlaceAdd.reset();
   closePopupElementAdd();
 }
 // обработка формы с профилем
-function profileFormSubmitHandler (evt) {
-  profileName.textContent = inputName.value;
-  profileAbout.textContent = inputAbout.value;
+function handlerProfileFormSubmit (evt) {
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
   closePopupEditProfile ();
 }
 // обработка кнопок
-formEditProfile.addEventListener('submit', profileFormSubmitHandler);
-formPlaceAdd.addEventListener('submit', placeFormSubmitHandler);
+formEditProfile.addEventListener('submit', handlerProfileFormSubmit);
+formPlaceAdd.addEventListener('submit', handlerPlaceFormSubmit);
 profileEditButton.addEventListener('click', openPopupEditProfile);
 profileAddButton.addEventListener('click', openPopupElementAdd);
-closeButtonEditProfile.addEventListener('click', closePopupEditProfile); 
-closeButtonElementAdd.addEventListener('click', closePopupElementAdd); 
-closeButtonZoomImage.addEventListener('click', closePopupZoomImage);
+buttonCloseEditProfile.addEventListener('click', closePopupEditProfile); 
+buttonCloseElementAdd.addEventListener('click', closePopupElementAdd); 
+buttonCloseZoomImage.addEventListener('click', closePopupZoomImage);
 
