@@ -12,6 +12,10 @@ export default class Card {
     .content
     .querySelector('.element')
     .cloneNode(true);
+
+    //const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
+
+
     return cardElement;
   }
 
@@ -25,14 +29,25 @@ export default class Card {
     return this._element;
   }
 
+  _toggleLikeButton () {
+    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+  };
+
+  _removeElement (){
+    this._element.remove();
+    this._element = null;
+
+  }
+
   _setEventListeners() {
     this._element.querySelector('.element__like-button').addEventListener('click', (evt) => {
-      evt.target.classList.toggle('element__like-button_active');
-    });
+      this._toggleLikeButton();
+    
+  });
 
     this._element.querySelector('.element__remove-button').addEventListener('click', (evt) => {
       //evt.target.closest('.element').remove();
-      this._element.remove();
+      this._removeElement();
     });
 
     this._elementImage.addEventListener('click', () => {

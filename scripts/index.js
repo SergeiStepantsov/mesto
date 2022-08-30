@@ -1,5 +1,5 @@
-import Card from "./card.js";
-import FormValidator from "./formValidation.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -71,11 +71,13 @@ const openPopup = function (popup){
   document.addEventListener('keydown', closePopupByPressEsc);
   popup.addEventListener('mousedown', closePopupByClickOverlay);
 }
+
 const closePopup = function (popup){
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByPressEsc);
   popup.removeEventListener('mousedown', closePopupByClickOverlay);
 }
+
 //закрытие по нажатию клафиши esc
 const closePopupByPressEsc = function(evt){
   if (evt.key === 'Escape'){
@@ -83,10 +85,7 @@ const closePopupByPressEsc = function(evt){
     closePopup(openedPopup);
   };
 }
-//добавление лайка
-// const addLikeByClick = function (evt){
-//   evt.target.classList.toggle('element__like-button_active');
-// };
+
 //функция закрытия по клику на оверлей
 function closePopupByClickOverlay (evt){
   const openedOverlayPopup = document.querySelector('.popup_opened');
@@ -96,17 +95,12 @@ function closePopupByClickOverlay (evt){
   closePopup (openedOverlayPopup);
  };
 }
+
 //функция открытия окна редактирования профиля
 function openPopupEditProfile () {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
-  popupEditProfile.querySelector('.userName-input-error').textContent = '';
-  popupEditProfile.querySelector('.userAbout-input-error').textContent = '';
-  const fieldInputPopup = Array.from(popupEditProfile.querySelectorAll('.popup__input'));
-  fieldInputPopup.forEach((item) =>{
-    item.classList.remove('popup__input_type_error');
-  });
-  disableSubmitButton (popupEditProfile);
+  formValidationProfile.resetValidation();
   openPopup(popupEditProfile);
 }
 
@@ -115,37 +109,20 @@ function closePopupEditProfile () {
   closePopup(popupEditProfile);
 }
 
-
-//функция открытия zoom контейнера
-// function openPopupZoomImage(imgUrl, imgCap){
-//   const popupImageData = popupZoomImage.querySelector('.popup__image');
-//   popupImageData.src = imgUrl;
-//   popupImageData.alt = imgCap;
-//   popupZoomImage.querySelector('.popup__image-caption').textContent = imgCap;
-//   openPopup(popupZoomImage);
-// }
 //функция закрытия окна zoom контейнера
 function closePopupZoomImage () {
   closePopup(popupZoomImage);
 }
+
 //функция открытия окна добваления карточки
 function openPopupElementAdd () {
-  popupElementAdd.querySelector('.placeName-input-error').textContent = '';
-  popupElementAdd.querySelector('.placeUrl-input-error').textContent = '';
-  const fieldInputPopup = Array.from(popupElementAdd.querySelectorAll('.popup__input'));
-  fieldInputPopup.forEach((item) =>{
-    item.classList.remove('popup__input_type_error');
-  });
-  disableSubmitButton(popupElementAdd);
+  formValidationPlaceAdd.resetValidation();
   openPopup(popupElementAdd);
 }
+
 //функция закрытия окна добваления карточки
 function closePopupElementAdd () {
   closePopup(popupElementAdd);
-}
-//деактивация кнопки
-function disableSubmitButton(popup){
-  popup.querySelector('.popup__button').classList.add('popup__button_disabled');
 }
 
 //создание новой карточки и добавления в DOM
@@ -184,18 +161,19 @@ function handlerPlaceFormSubmit (evt) {
   closePopupElementAdd();
 }
 
+// обработка формы с профилем
+function handlerProfileFormSubmit (evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
+  closePopupEditProfile ();
+}
+
 const formValidationProfile = new FormValidator (formConfig, formEditProfile);
 formValidationProfile.enableValidation();
 
 const formValidationPlaceAdd = new FormValidator (formConfig, formPlaceAdd);
 formValidationPlaceAdd.enableValidation();
-
-// обработка формы с профилем
-function handlerProfileFormSubmit (evt) {
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
-  closePopupEditProfile ();
-}
 
 // обработка кнопок
 formEditProfile.addEventListener('submit', handlerProfileFormSubmit);
