@@ -42,10 +42,6 @@ export const profileAddButton = document.querySelector('.profile__add-button');
 export const popupEditProfile = document.querySelector('.popup_edit-profile');
 export const popupElementAdd = document.querySelector('.popup_add-element'); 
 export const popupZoomImage = document.querySelector('.popup_zoom-image'); 
-//блок переменных для кнопок закрытия, лайк, корзина
-export const buttonCloseEditProfile = popupEditProfile.querySelector('.popup__close-button'); 
-export const buttonCloseElementAdd = popupElementAdd.querySelector('.popup__close-button'); 
-export const buttonCloseZoomImage = popupZoomImage.querySelector('.popup__close-button'); 
 //блок переменных для формы редактирования профиля
 export const formEditProfile = popupEditProfile.querySelector('.popup__form');
 export const nameInput = formEditProfile.querySelector('.popup__input_data_name'); 
