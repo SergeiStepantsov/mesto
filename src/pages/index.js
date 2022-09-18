@@ -11,9 +11,6 @@ initialCards,
 formConfig,
 profileEditButton,
 profileAddButton,
-popupEditProfile,
-popupElementAdd,
-popupZoomImage, 
 nameInput,
 aboutInput,
 formEditProfile,
@@ -55,14 +52,14 @@ elementsList.renderItems();
 
 const popupWithImage = new PopupWithImage
 (
-  popupZoomImage, 
+  '.popup_zoom-image', 
   popupImage, 
   popupImageCaption,
 );
 popupWithImage.setEventListeners();
 
 const popupWithFormEditProfile = new PopupWithForm({
-popupSelector: popupEditProfile,
+popupSelector: '.popup_edit-profile',
 handleFormSubmit: (item) => {
   userInfo.setUserInfo (item)
 }
@@ -71,7 +68,7 @@ handleFormSubmit: (item) => {
 popupWithFormEditProfile.setEventListeners();
 
 const popupWithFormAddCard = new PopupWithForm({
-popupSelector: popupElementAdd,
+popupSelector: '.popup_add-element',
 handleFormSubmit: (card) => {
   elementsList.addItem(createCard(card))
 }
