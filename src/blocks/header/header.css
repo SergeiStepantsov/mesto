@@ -1,5 +1,19 @@
 .header {
-  margin: 0 auto;
-  max-width: 880px;
-  border-bottom: 1px solid rgba(54, 54, 54, .7);
+    max-width: 880px;
+    margin: 45px auto 40px;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    box-sizing: border-box;
 }
+
+@media screen and (max-width: 900px) {
+    .header {
+        max-width: 700px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .header {
+        margin: 28px 0 38.25px;
+    }
+}
+

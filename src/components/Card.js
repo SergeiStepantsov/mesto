@@ -1,49 +1,101 @@
 export default class Card {
-  constructor ({data, handleCardClick}, templateSelector){
-    this._name = data.name;
-    this._link = data.link;
-    this._templateSelector = templateSelector;
-    this._handleCardClick = handleCardClick;
-  }
+    constructor( {data, handleCardClick, handleLikeClick, handleRemoveClick},  templateSelector, userId ) {
+        this._name = data.name;
+        this._link = data.link;
+        this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
+        this._handleLikeClick = handleLikeClick;
+        this._handleRemoveClick = handleRemoveClick;
+        this._userId = userId;
+        this._likes = data.likes; 
+        this._id = data.id;
+        this._owner = data.owner._id;
+    }
 
-  _getTemplate(){
-    const cardElement = document
-    .querySelector(this._templateSelector)
-    .content
-    .querySelector('.element')
-    .cloneNode(true);
-    return cardElement;
-  }
+    getCardId() {
+      return this._id
+    }
 
-  generateCard() {
-    this._element = this._getTemplate();
-    this._elementImage = this._element.querySelector('.element__image');
-    this._setEventListeners();
-    this._element.querySelector('.element__title').textContent = this._name;
-    this._elementImage.src= this._link;
-    this._elementImage.alt = this._name;
-    return this._element;
-  }
+    _getTemplate() {
+      const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
 
-  _toggleLikeButton (evt) {
-    evt.target.classList.toggle('element__like-button_active');
+      return cardElement; 
+    }
+
+    generateCard() {
+      this._element = this._getTemplate();  
+      this._elementPhoto = this._element.querySelector('.element__photo');
+      this._elementLike = this._element.querySelector('.element__like');  
+      this._deleteButton = this._element.querySelector('.element__delete');
+      this._setEventListeners();
+      this._element.querySelector('.element__title').textContent = this._name;
+      this._elementPhoto.src= this._link;
+      this._elementPhoto.alt = this._name;
+      this._likeCounter = this._element.querySelector('.element__like-count');  
+      this.countLike(this._likes);
+      this.removeButtonDelete();
+     
+      return this._element;
+    }
     
-  }
+    _setEventListeners() {
+      this._elementPhoto.addEventListener('click', () => {
+        this._handleCardClick();  
+      });
 
-  _removeElement (){
-    this._element.remove();
-    this._element = null;
-  }
+      this._elementLike.addEventListener('click', (evt) => {
+        this._handleLikeClick(evt);
+      });
 
-  _setEventListeners() {
-    this._element.querySelector('.element__like-button').addEventListener('click', (evt) => {
-      this._toggleLikeButton(evt);
-    });
-    this._element.querySelector('.element__remove-button').addEventListener('click', (evt) => {
-      this._removeElement();
-    });
-    this._elementImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link)
-    });
-  }
+      this._deleteButton.addEventListener('click', () => {
+        this._handleRemoveClick();
+      });
+      
+    }
+
+    setLike() {
+      this._elementLike.classList.add('element__like_active');
+    }
+    
+    deleteLike() {
+      this._elementLike.classList.remove('element__like_active');
+    }
+
+    tongleLike() {
+      if (this.checkUserLike()) {
+        this.setLike();
+      } else {
+        this.deleteLike();  
+      } 
+    }
+
+    deleteCard() { 
+      this._element.remove(); 
+      this._element = null; 
+    } 
+
+    countLike(data) {
+      this._likes = data;
+      this._likeCounter.textContent = this._likes.length; 
+      if (this.checkUserLike()) {
+        this.setLike();
+      } else {
+        this.deleteLike();  
+      }
+    }
+
+    checkUserLike() {
+      return this._likes.some(user => user._id === this._userId);
+    }
+    
+    removeButtonDelete() {
+      if (this._owner !== this._userId) {
+        this._deleteButton.remove();
+      }
+    }
 }
+
+
+
+
+
