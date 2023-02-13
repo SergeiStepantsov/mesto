@@ -1,20 +1,18 @@
-.footer{
-  max-width: 880px;
-  margin: 0 auto;
-  padding-top: 67px;
+.footer {
+    margin: 0 auto 60px;
+    max-width: 880px;
+    box-sizing: border-box;
 }
 
-@media screen and (max-width:750px) {
-  .footer{
-    padding-top: 48px;
-    padding-left: 18px;
-  }
+@media screen and (max-width: 900px) {
+    .footer {
+        max-width: 700px;
+    }
 }
 
-/* @media screen and (max-width:765px) {
-  .footer{
-    max-width: calc(100% - 32px);
-    flex-direction: column;
-    align-items: flex-start;
-  }
-} */ 
+@media screen and (max-width: 600px) {
+    .footer {
+        max-width: 320px;
+        margin: 0 auto 36px;
+    }
+}
