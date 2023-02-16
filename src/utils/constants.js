@@ -21,7 +21,7 @@ export const validationConfig = {
   inactiveButtonClass: 'form__save_disabled',
   inputErrorClass: 'form__input_type_error',
 }
-
+/*
 export const initialCards = [
     {
       name: 'Архыз',
@@ -47,4 +47,4 @@ export const initialCards = [
       name: 'Байкал',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-  ];
+  ];*/
