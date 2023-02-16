@@ -16,7 +16,7 @@ import {
   editButton,
   addButton,
   validationConfig,
-  initialCards,
+  //initialCards,
   popupPhoto,
   popupTitle,
   avatarButton,
