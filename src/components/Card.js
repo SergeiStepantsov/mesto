@@ -53,20 +53,12 @@ export default class Card {
       
     }
 
-    setLike() {
+    _setLike() {
       this._elementLike.classList.add('element__like_active');
     }
     
-    deleteLike() {
+    _deleteLike() {
       this._elementLike.classList.remove('element__like_active');
-    }
-
-    tongleLike() {
-      if (this.checkUserLike()) {
-        this.setLike();
-      } else {
-        this.deleteLike();  
-      } 
     }
 
     deleteCard() { 
@@ -78,9 +70,9 @@ export default class Card {
       this._likes = data;
       this._likeCounter.textContent = this._likes.length; 
       if (this.checkUserLike()) {
-        this.setLike();
+        this._setLike();
       } else {
-        this.deleteLike();  
+        this._deleteLike();  
       }
     }
 
