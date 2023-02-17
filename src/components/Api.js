@@ -3,8 +3,9 @@ export default class Api {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
     }
+     //_server_Сorrectness
 
-    _serverСorrectness(res) {
+    _checkResponse(res) {
         if (res.ok) {
             return res.json();
         }
@@ -16,7 +17,7 @@ export default class Api {
             method: 'GET',
             headers: this._headers
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 
     async getInitialCards() {
@@ -24,7 +25,7 @@ export default class Api {
             method: 'GET',
             headers: this._headers
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 
     async editProfile(data) {
@@ -36,7 +37,7 @@ export default class Api {
                 about: data.about
             })
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 
     async addNewCard(data) {
@@ -48,7 +49,7 @@ export default class Api {
                 link: data.link
             })
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 
     async deleteCard(cardId) {
@@ -56,7 +57,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 
     async setLike(cardId) {
@@ -64,7 +65,7 @@ export default class Api {
             method: 'PUT',
             headers: this._headers
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 
     async deleteLike(cardId) {
@@ -72,7 +73,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 
     async editAvatar(data) {
@@ -83,6 +84,6 @@ export default class Api {
                 avatar: data.avatar
             })
         });
-        return this._serverСorrectness(res);
+        return this._checkResponse(res);
     }
 }

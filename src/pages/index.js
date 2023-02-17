@@ -159,7 +159,6 @@ const createCard = (data) => {
       if(card.checkUserLike()) {
         api.deleteLike(data._id)
           .then((data) => {
-            card.deleteLike();
             card.countLike(data.likes);
           })
           .catch((err) =>{
@@ -168,7 +167,6 @@ const createCard = (data) => {
       } else {
         api.setLike(data._id) 
           .then((data) => {
-            card.setLike();
             card.countLike(data.likes);
             
           })
@@ -203,15 +201,19 @@ editButton.addEventListener('click', () => {
   const {name, about} = userInfo.getUserInfo();
   nameInput.value = name;
   jobInput.value = about;
+  profileFormValidator.resetValidation();
   popupWithFormEditProfile.open();
 });
 
 addButton.addEventListener('click', () => {
   cardFormValidator.toggleButtonState();
+  cardFormValidator.resetValidation();
   popupWithFormAddCard.open();
 })
 
 avatarButton.addEventListener('click', () => {
   avatarFormValidator.toggleButtonState();
+  avatarFormValidator.resetValidation();
   popupWithFormAvatar.open();
+  
 })
