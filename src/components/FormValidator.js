@@ -64,7 +64,6 @@ export default class FormValidator {
     }
 
     resetValidation() {
-      //this._disableSubmitButton();
       this._inputList.forEach((inputElement) => {
         this._hideInputError(inputElement) 
       });
